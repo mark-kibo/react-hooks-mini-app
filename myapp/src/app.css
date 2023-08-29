@@ -1,0 +1,13 @@
+.me-auto a{
+    margin: 5px;
+    text-decoration: none;
+    color:brown
+}
+
+.bots{
+    display: flex;
+    flex-wrap: wrap;
+}
+.bots div{
+    margin: 5px;
+}
