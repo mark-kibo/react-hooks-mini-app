@@ -10,6 +10,7 @@ import BotArmy from "./components/BotArmy";
 function App() {
   const [bots, setBots]= useState()
   const [bot, setBot]= useState([])
+  let [isEnlisted, setIsEnlisted]=useState(false)
   let id = useRef(bot)
   let botsData= useRef()
   botsData.current=bot
@@ -40,11 +41,25 @@ function App() {
   }
   console.log(bot)
   
+  function handleDelist(data){
+    console.log(data)
 
-  function handleSendId(number){
-    console.log(number)
+    // delete data
+    fetch(`http://localhost:4000/bots/${id}`, {method:"DELETE"})
+    .then(res=>res.json() )
+    .catch(e=>console.log(e))
+    
+    // set isenlisted
+    setIsEnlisted(false)
+    setBot(bot.filter(mybot=> mybot[0].id !== data))
+  }
+
+  function handleSendId(number, e){
+    console.log(number, e)
     id.current=number
     // id.current=id
+    setIsEnlisted(!isEnlisted)
+    e.target.disabled =isEnlisted
     getSpecificdata()
   }
   return (
@@ -54,7 +69,7 @@ function App() {
       <div className="row">
         <div className="col-auto min-vh-100 bg-dark" style={{width :"50%"}}>
           <h1 style={{color: "#fff", fontSize:"2.8rem", alignItems:"center", margin:"2px"}}>collection</h1>
-        <ListCollection bots={bots} sendId={handleSendId}/>
+        <ListCollection bots={bots} sendId={handleSendId} isEnlisted={isEnlisted}/>
         </div>
 
       </div>
@@ -63,7 +78,7 @@ function App() {
 
     <div style={{float:"right", position:"absolute"}}>
       <h1 style={{ color: "black", alignContent:"center" , float : "right"}}>BOT ARMY</h1>
-      <BotArmy data={bot}/>
+      <BotArmy data={bot} handleDelist={handleDelist}/>
     </div>
     </div>
   );

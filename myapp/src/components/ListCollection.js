@@ -29,7 +29,9 @@ export const ListCollection = ({bots, sendId}) => {
             width:"50%",
             alignItems:"center",
             margin:"25px"
-          }} onClick={()=>{ sendId(bot.id)}}>Enlist</Button>
+          }} onClick={(e)=>{ 
+            sendId(bot.id, e)
+            }} >Enlist</Button>
         </Card>
       </Col>
       // </Row>

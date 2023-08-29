@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 
 
-function BotArmy({data}) {
+function BotArmy({data, handleDelist}) {
   console.log(data)
   // let params = useParams()
   // let navigate=useNavigate()
@@ -57,7 +57,9 @@ function BotArmy({data}) {
           <p> catchphrase :{mydata[0].catchphrase}</p>
           <p>created at "<span>{mydata[0].created_at}</span>"</p>
         </Card.Text>
-        <Button variant="danger" >Delist</Button>
+        <Button variant="danger" onClick={()=>{
+            handleDelist(mydata[0].id)
+        }} >Delist</Button>
       </Card.Body>
     </Card>
     </div>
