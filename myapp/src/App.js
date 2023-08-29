@@ -50,7 +50,6 @@ function App() {
     .catch(e=>console.log(e))
     
     // set isenlisted
-    setIsEnlisted(false)
     setBot(bot.filter(mybot=> mybot[0].id !== data))
   }
 
@@ -60,12 +59,13 @@ function App() {
     // id.current=id
     setIsEnlisted(!isEnlisted)
     e.target.disabled =isEnlisted
+  
     getSpecificdata()
   }
   return (
   <div>
     <NavBarComp/>
-    <div className="container-fluid" style={{marginTop:"10px"}}>
+    <div className="container-fluid" style={{marginTop:"10px", position:"relative", flexBasis:"50%"}}>
       <div className="row">
         <div className="col-auto min-vh-100 bg-dark" style={{width :"50%"}}>
           <h1 style={{color: "#fff", fontSize:"2.8rem", alignItems:"center", margin:"2px"}}>collection</h1>
@@ -76,8 +76,8 @@ function App() {
      
     </div>
 
-    <div style={{float:"right", position:"absolute"}}>
-      <h1 style={{ color: "black", alignContent:"center" , float : "right"}}>BOT ARMY</h1>
+    <div className="" style={{marginTop:"10px", flexBasis:"50%"}}>
+      <h1 style={{ color: "black", alignContent:"center" , float : "right", position:"absolute", top:"50px", right:0}}>BOT ARMY</h1>
       <BotArmy data={bot} handleDelist={handleDelist}/>
     </div>
     </div>

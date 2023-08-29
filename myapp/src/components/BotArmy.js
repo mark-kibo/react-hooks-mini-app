@@ -45,10 +45,9 @@ function BotArmy({data, handleDelist}) {
     {data != null ?
       (data.map(mydata=>(
         <div>
-        <Card style={{ width: '18rem' }}>
+        <Card key={mydata[0].id} style={{display:'flex', flexDirection:"column",flexWrap:"wrap", width:"250px" , justifyContent:"flex-end", overflow:"hidden", float:"right" ,left:"200%", margin:"10px"}}>
         <Card.Img variant="top" src={mydata[0].avatar_url} />
         <Card.Body>
-        <Card.Title>Name : {mydata[0].name}</Card.Title>
         <Card.Text>
           <p> health :{mydata[0].health}</p>
           <p> Damage :{mydata[0].damage}</p>
@@ -57,7 +56,7 @@ function BotArmy({data, handleDelist}) {
           <p> catchphrase :{mydata[0].catchphrase}</p>
           <p>created at "<span>{mydata[0].created_at}</span>"</p>
         </Card.Text>
-        <Button variant="danger" onClick={()=>{
+        <Button variant="danger" id={mydata[0].id} onClick={()=>{
             handleDelist(mydata[0].id)
         }} >Delist</Button>
       </Card.Body>
